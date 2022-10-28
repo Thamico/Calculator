@@ -1,4 +1,5 @@
 let first = null;
+let operation = null;
 let second = null;
 
 document.querySelectorAll("button").forEach((el) => {
@@ -7,6 +8,9 @@ document.querySelectorAll("button").forEach((el) => {
   });
 });
 
+/*
+ * TODO: multiple digits numbers
+ */
 function digit_pressed(digit) {
   if (first == null) {
     first = digit;
