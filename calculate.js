@@ -1,6 +1,7 @@
 let first = null;
 let operation = null;
 let second = null;
+let solution = null;
 
 document.querySelectorAll("button").forEach((el) => {
   el.addEventListener("click", () => {
@@ -8,15 +9,19 @@ document.querySelectorAll("button").forEach((el) => {
   });
 });
 
-/*
- * TODO: multiple digits numbers
- */
 function digit_pressed(digit) {
   if (isNumeric(digit)) {
+    if (solution != null) {
+      reset();
+    }
     if (document.getElementById("calculator-screen").value == 0) {
       document.getElementById("calculator-screen").value = digit;
     } else {
-      document.getElementById("calculator-screen").value += digit;
+      if (first == null) {
+        document.getElementById("calculator-screen").value = digit;
+      } else {
+        document.getElementById("calculator-screen").value += digit;
+      }
     }
 
     if (operation == null) {
@@ -27,11 +32,39 @@ function digit_pressed(digit) {
   }
 }
 
+function reset() {
+  first = null;
+  second = null;
+  operation = null;
+  solution = null;
+}
+
+/**
+ * TODO: results with float numbers and when entering a operation a 0 comes fix that
+ * @param {} eqlButton
+ */
+function resultNonFloat(eqlButton) {
+  if (operation == "+") {
+    solution = parseInt(first) + parseInt(second);
+    document.getElementById("calculator-screen").value = solution;
+  }
+  if (operation == "-") {
+    solution = parseInt(first) - parseInt(second);
+    document.getElementById("calculator-screen").value = solution;
+  }
+  if (operation == "*") {
+    solution = parseInt(first) * parseInt(second);
+    document.getElementById("calculator-screen").value = solution;
+  }
+  if (operation == "/") {
+    solution = parseInt(first) / parseInt(second);
+    document.getElementById("calculator-screen").value = solution;
+  }
+}
+
 function equation(objButton) {
   operation = objButton.value;
   document.getElementById("calculator-screen").value = 0;
-  console.log(first);
-  console.log(operation);
 }
 
 function isNumeric(value) {
