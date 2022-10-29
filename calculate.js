@@ -59,21 +59,40 @@ function allClear() {
  * @param {} eqlButton
  */
 function resultNonFloat(eqlButton) {
-  if (operation == "+") {
-    solution = parseInt(first) + parseInt(second);
-    document.getElementById("calculator-screen").value = solution;
-  }
-  if (operation == "-") {
-    solution = parseInt(first) - parseInt(second);
-    document.getElementById("calculator-screen").value = solution;
-  }
-  if (operation == "*") {
-    solution = parseInt(first) * parseInt(second);
-    document.getElementById("calculator-screen").value = solution;
-  }
-  if (operation == "/") {
-    solution = parseInt(first) / parseInt(second);
-    document.getElementById("calculator-screen").value = solution;
+  if (first.includes(".") || second.includes(".")) {
+    if (operation == "+") {
+      solution = parseFloat(first) + parseFloat(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "-") {
+      solution = parseFloat(first) - parseFloat(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "*") {
+      solution = parseFloat(first) * parseFloat(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "/") {
+      solution = parseFloat(first) / parseFloat(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+  } else {
+    if (operation == "+") {
+      solution = parseInt(first) + parseInt(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "-") {
+      solution = parseInt(first) - parseInt(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "*") {
+      solution = parseInt(first) * parseInt(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
+    if (operation == "/") {
+      solution = parseInt(first) / parseInt(second);
+      document.getElementById("calculator-screen").value = solution;
+    }
   }
 }
 
@@ -86,6 +105,10 @@ function equation(objButton) {
       "Please only use two numbers. Press AC to start over or = for solution!"
     );
   }
+}
+
+function float() {
+  document.getElementById("calculator-screen").value += ".";
 }
 
 function isNumeric(value) {
