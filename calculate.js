@@ -12,15 +12,28 @@ document.querySelectorAll("button").forEach((el) => {
  * TODO: multiple digits numbers
  */
 function digit_pressed(digit) {
-  if (first == null) {
-    first = digit;
-    showDigit(digit);
-  } else if (second == null) {
-    second = digit;
-    showDigit(digit);
+  if (isNumeric(digit)) {
+    if (document.getElementById("calculator-screen").value == 0) {
+      document.getElementById("calculator-screen").value = digit;
+    } else {
+      document.getElementById("calculator-screen").value += digit;
+    }
+
+    if (operation == null) {
+      first = document.getElementById("calculator-screen").value;
+    } else {
+      second = document.getElementById("calculator-screen").value;
+    }
   }
 }
 
-function showDigit(digit) {
-  document.getElementById("calculator-screen").value = digit.toString();
+function equation(objButton) {
+  operation = objButton.value;
+  document.getElementById("calculator-screen").value = 0;
+  console.log(first);
+  console.log(operation);
+}
+
+function isNumeric(value) {
+  return /^-?\d+$/.test(value);
 }
